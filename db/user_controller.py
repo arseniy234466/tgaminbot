@@ -16,6 +16,16 @@ class Users(BASE):
     user_lang = Column(String, default="ru")
     reg_date = Column(DateTime, default=datetime.datetime.utcnow())
 
+
+
+class Ban_users(BASE):
+    __tablename__ = "ban_users"
+
+    id = Column(Integer, Sequence('some_id_seq'))
+    user_id = Column(Integer, primary_key=True)
+    user_name = Column(String)
+    reg_date = Column(DateTime, default=datetime.datetime.utcnow())
+
     def __init__(self, user_id, user_name, first_name, last_name):
         self.user_id = user_id
         self.user_name = user_name
@@ -26,6 +36,7 @@ class Users(BASE):
         return "<User info %d> " % self.user_id
 
 
+Users.__table__.create(checkfirst=True)
 Users.__table__.create(checkfirst=True)
 
 
